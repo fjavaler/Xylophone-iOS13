@@ -21,6 +21,7 @@ class ViewController: UIViewController
 	@IBAction func keyPressed(_ sender: UIButton)
 	{
 		playSound(soundName: sender.currentTitle!)
+		dimButtonPressed(buttonPressed: sender)
 	}
 	
 	func playSound(soundName: String)
@@ -30,6 +31,15 @@ class ViewController: UIViewController
 		player = try! AVAudioPlayer(contentsOf: url!)
 		
 		player.play()
+	}
+	
+	func dimButtonPressed(buttonPressed: UIButton)
+	{
+		buttonPressed.alpha = 0.5
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2)
+		{
+			buttonPressed.alpha = 1.0
+		}
 	}
 
 }
